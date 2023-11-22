@@ -1,0 +1,35 @@
+<main class="container mt-4 d-flex align-items-center justify-content-center">
+  <div class="border p-3 mb-3 w-100" style="max-width: 800px;">
+    <h1 class="text-center">Lista de Livros</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Resumo</th>
+          <th scope="col">Autores</th>
+          <th scope="col">Editora</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let livro of livros" class="livro-item">
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.resumo }}</td>
+          <td>
+            <ul class="list-unstyled" style="list-style: none;">
+              <li *ngFor="let autor of livro.autores">{{ autor }}</li>
+            </ul>
+          </td>
+          <td>{{ obterNome(livro.codEditora) }}</td>
+          <td>
+            <button type="button" class="btn btn-danger rounded-pill" (click)="excluir(livro.codigo)">Excluir</button>
+          </td>
+        </tr>
+        
+        <tr *ngIf="livros.length === 0">
+          <td colspan="5" class="text-center">Nenhum livro na lista.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
